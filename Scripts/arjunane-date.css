@@ -1,0 +1,470 @@
+/*
+    COLOR
+*/
+.arjunane-date {
+  font-family: Arial, Helvetica, sans-serif;
+  position: absolute;
+  width: 350px;
+  background: #FFFFFF;
+  border: 1px solid #ecf0f1;
+  overflow: hidden;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  font-size: 10pt;
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  -ms-transition: 0.5s;
+  transition: 0.5s;
+  margin: auto;
+}
+.arjunane-date.aktif {
+  z-index: 1000;
+  opacity: 1;
+}
+.arjunane-date ._title {
+  padding: 10px 5px 5px 5px;
+  font-size: 14pt;
+  font-weight: bold;
+  background: #FFFFFF;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.arjunane-date * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.arjunane-date *:after, .arjunane-date *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/*
+    HEADER DATE
+*/
+._date-header {
+  padding: 5px;
+  overflow: hidden;
+  text-align: center;
+  background: #2f3542;
+}
+._date-header ._date-header-left,
+._date-header ._date-header-right {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  -webkit-transform: translateY(10%);
+  -moz-transform: translateY(10%);
+  -o-transform: translateY(10%);
+  -ms-transform: translateY(10%);
+  transform: translateY(10%);
+}
+._date-header ._date-header-left {
+  float: left;
+}
+._date-header ._date-header-left:after {
+  content: " ";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-right: 10px solid #FFFFFF;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+._date-header ._date-header-center {
+  display: inline-block;
+  vertical-align: middle;
+  color: #FFFFFF;
+  cursor: default;
+  padding: 10px;
+}
+._date-header ._date-header-right {
+  float: right;
+}
+._date-header ._date-header-right:after {
+  content: " ";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 10px solid #FFFFFF;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+._date-header ._date-header-left:hover,
+._date-header ._date-header-center:hover,
+._date-header ._date-header-right:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+._date-body {
+  border-bottom: 1px solid #ecf0f1;
+  font-size: 0;
+  text-align: center;
+  overflow: hidden;
+}
+._date-body.full-day {
+  width: 200%;
+  text-align: left;
+}
+._date-body ._date-container {
+  margin: 10px 0;
+  width: 350px;
+  display: inline-block;
+  vertical-align: top;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  transition: 0.3s;
+}
+._date-body ._date-container.left {
+  margin-left: -350px;
+}
+._date-body ._date-container.right {
+  margin-right: -350px;
+}
+._date-body ._date-container ._date-inner {
+  border-top: 1px solid #ecf0f1;
+  text-align: left;
+}
+._date-body ._date-container ._date-inner:last-child {
+  border-bottom: 1px solid #ecf0f1;
+}
+._date-body .days {
+  width: 14.2857142857%;
+  display: inline-block;
+  font-size: 10pt;
+  padding: 5px;
+  cursor: default;
+  text-align: center;
+  line-height: 18px;
+  vertical-align: top;
+  height: 28px;
+}
+._date-body .days.minggu {
+  color: #ED4C67;
+}
+._date-body .days.today {
+  color: #2f3542;
+  background: #ecf0f1;
+}
+._date-body .days.holiday {
+  color: #FFFFFF;
+  background: #ED4C67;
+}
+._date-body .days.minggu.holiday, ._date-body .days.today.minggu, ._date-body .days.today.holiday {
+  background: #e74c3c;
+  color: #FFFFFF;
+}
+._date-body .days.holiday:hover {
+  background: #eb3b5a;
+}
+._date-body .days:hover {
+  background: #ecf0f1;
+}
+._date-body .days.select {
+  background: #2ecc71;
+  color: #FFFFFF;
+}
+._date-body .days.select:hover {
+  background: #27ae60;
+}
+._date-body .days.select.holiday:hover {
+  background: #eb3b5a;
+}
+._date-body .days:not(:nth-child(7)) {
+  border-right: 1px solid #ecf0f1;
+}
+
+._date-time {
+  padding: 35px 10px;
+  border-top: 1px solid #ecf0f1;
+  text-align: center;
+  background: #f5f6fa;
+  position: relative;
+}
+._date-time ._time-container {
+  display: inline-block;
+  width: 40px;
+  margin: 30px 20px;
+  position: relative;
+  height: 30px;
+  border: 1px solid #bdc3c7;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  background: #FFFFFF;
+}
+._date-time ._time-container ._time-text {
+  left: -5px;
+  right: -5px;
+  top: -55px;
+  margin: auto;
+  width: 50px;
+  height: 20px;
+  position: absolute;
+  color: #2f3542;
+  font-size: 10pt;
+  font-weight: bold;
+  background: #FFFFFF;
+  line-height: 20px;
+  border: 1px solid #ecf0f1;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  cursor: default;
+}
+._date-time ._time-container ._time-text:hover {
+  background: #74b9ff;
+  color: #FFFFFF;
+}
+._date-time ._time-container ._time-text.hour:hover {
+  background: #ED4C67;
+}
+._date-time ._time-container ._time-text.min:hover {
+  background: #fdcb6e;
+}
+._date-time ._time-container ._time-text.sec:hover {
+  background: #2ecc71;
+}
+._date-time ._time-container ._time-up,
+._date-time ._time-container ._time-down {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 35px;
+  height: 20px;
+  border: 1px solid #bdc3c7;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  background: #ecf0f1;
+}
+._date-time ._time-container ._time-up:hover,
+._date-time ._time-container ._time-down:hover {
+  background: #bdc3c7;
+}
+._date-time ._time-container ._time-up {
+  top: -25px;
+}
+._date-time ._time-container ._time-down {
+  bottom: -25px;
+}
+._date-time ._time-container ._time-up:after,
+._date-time ._time-container ._time-down:after {
+  position: absolute;
+  content: " ";
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  width: 0;
+  height: 0;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}
+._date-time ._time-container ._time-up:after {
+  border-bottom: 5px solid #7f8c8d;
+}
+._date-time ._time-container ._time-down:after {
+  border-top: 5px solid #7f8c8d;
+}
+._date-time ._time-container ._time-inner {
+  width: 40px;
+  height: 30px;
+  overflow: hidden;
+  position: relative;
+}
+._date-time ._time-container ._time-inner ._time {
+  line-height: 30px;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -o-transition: 0.2s;
+  -ms-transition: 0.2s;
+  transition: 0.2s;
+  font-size: 10pt;
+  cursor: default;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+._date-time ._time-container ._time-inner ._time.__top {
+  top: -100%;
+  bottom: 100%;
+}
+._date-time ._time-container ._time-inner ._time.__down {
+  top: 100%;
+  bottom: -100%;
+}
+._date-time ._time-container ._time-inner ._time.aktif {
+  top: 0;
+  bottom: 0;
+}
+._date-time .__button-time {
+  position: absolute;
+  bottom: 7.5px;
+  left: 0;
+  right: 0;
+  width: 50px;
+  height: 20px;
+  margin: auto;
+  background: #45aaf2;
+  line-height: 22px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 9pt;
+  color: #FFFFFF;
+}
+._date-time .__button-time:hover {
+  background: #2d98da;
+}
+
+._date-option {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  right: 0;
+  height: 0;
+  background: #2f3542;
+  font-size: 0;
+  overflow: hidden;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -o-transition: 0.2s;
+  -ms-transition: 0.2s;
+  transition: 0.2s;
+  width: 100%;
+}
+._date-option ._option-input {
+  border-bottom: 1px solid #ecf0f1;
+  background: #1e272e;
+}
+._date-option ._option-input ::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #FFFFFF;
+  opacity: 1;
+  /* Firefox */
+}
+._date-option ._option-input :-webkit-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #FFFFFF;
+}
+._date-option ._option-input ::-webkit-input-placeholder {
+  /* Microsoft Edge */
+  color: #FFFFFF;
+}
+._date-option ._option-input :-moz-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #FFFFFF;
+}
+._date-option ._option-input ::-moz-input-placeholder {
+  /* Microsoft Edge */
+  color: #FFFFFF;
+}
+._date-option ._option-input :-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #FFFFFF;
+}
+._date-option ._option-input ::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #FFFFFF;
+}
+._date-option ._option-input input {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  color: #FFFFFF;
+  border: none !important;
+  font-size: 9pt;
+}
+._date-option ._option-container {
+  overflow-y: auto;
+  width: 100%;
+  height: 125px;
+  padding-right: 17px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -o-box-sizing: content-box;
+  -ms-box-sizing: content-box;
+  box-sizing: content-box;
+  overflow-x: hidden;
+}
+._date-option ._option-container ._option-inner {
+  width: 350px;
+  font-size: 0pt;
+}
+._date-option ._option-container ._option-inner .month {
+  font-size: 10pt;
+  color: #FFFFFF;
+  padding: 5px;
+  cursor: default;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -o-transition: 0.2s;
+  -ms-transition: 0.2s;
+  transition: 0.2s;
+  width: 50%;
+  display: inline-block;
+}
+._date-option ._option-container ._option-inner .month:hover, ._date-option ._option-container ._option-inner .month.aktif {
+  background: #1e272e;
+  padding-left: 15px;
+}
+._date-option ._option-container ._option-inner .year {
+  font-size: 10pt;
+  color: #FFFFFF;
+  padding: 5px;
+  cursor: default;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -o-transition: 0.2s;
+  -ms-transition: 0.2s;
+  transition: 0.2s;
+  display: inline-block;
+  width: 11.1111111111%;
+  text-align: center;
+}
+._date-option ._option-container ._option-inner .year:hover, ._date-option ._option-container ._option-inner .year.aktif {
+  background: #1e272e;
+}
+._date-option ._option-container ._option-inner .month.none,
+._date-option ._option-container ._option-inner .year.none {
+  font-size: 0;
+  padding: 0;
+  width: 0;
+}
+._date-option.aktif {
+  height: 163px;
+}
