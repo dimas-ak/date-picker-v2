@@ -898,8 +898,17 @@
             }
             else
             {
-                this.value = (valTime.length === 1) ? val : valTime[0];
-                this.multiDate.push(this.value);
+                // apabila ada tanggal yang seperti 0000-00-00
+                if(!this._validDate(val))
+                {
+                    this.today = this._normalizeNullValue(today);
+                    this.value = this.today;
+                }
+                else
+                {
+                    this.value = (valTime.length === 1) ? val : valTime[0];
+                    this.multiDate.push(this.value);
+                }
             }
         }
         // jika ada waktu
