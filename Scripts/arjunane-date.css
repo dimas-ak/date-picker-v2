@@ -426,9 +426,9 @@
   font-size: 0pt;
 }
 ._date-option ._option-container ._option-inner .month {
-  font-size: 10pt;
+  font-size: 11pt;
   color: #FFFFFF;
-  padding: 5px;
+  padding: 10px;
   cursor: default;
   -webkit-transition: 0.2s;
   -moz-transition: 0.2s;
@@ -443,9 +443,9 @@
   padding-left: 15px;
 }
 ._date-option ._option-container ._option-inner .year {
-  font-size: 10pt;
+  font-size: 11pt;
   color: #FFFFFF;
-  padding: 5px;
+  padding: 10px;
   cursor: default;
   -webkit-transition: 0.2s;
   -moz-transition: 0.2s;
@@ -453,7 +453,7 @@
   -ms-transition: 0.2s;
   transition: 0.2s;
   display: inline-block;
-  width: 11.1111111111%;
+  width: 16.6666666667%;
   text-align: center;
 }
 ._date-option ._option-container ._option-inner .year:hover, ._date-option ._option-container ._option-inner .year.aktif {
