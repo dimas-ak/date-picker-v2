@@ -70,32 +70,32 @@
         DEFAULT =
         {
             daysName  : [
-                ["Minggu", "Min"], ['Senin', "Sen"], ["Selasa", "Sel"], ["Rabu", "Rab"], ["Kamis", "Kam"], ["Jumt'at", "Jum"], ["Sabtu", "Sab"]
+                ["Minggu", "Min"], ['Senin', "Sen"], ["Selasa", "Sel"], ["Rabu", "Rab"], ["Kamis", "Kam"], ["Jumat", "Jum"], ["Sabtu", "Sab"]
             ], //memberikan nama hari beserta singkatan nya
             monthsName: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"], //memberikan nama semua bulan
             rangeYears: (dt.getFullYear() - 1) + ":" + dt.getFullYear(), //menerapkan tahun saat ini untuk pemilihan tahun awal sampai akhir
             formatDate: "mm-dd-yyyy", //menerapkan default pemilihan tanggal, dimana tanggal di awali "bulan-hari-tahun"
             formatTime: "hh:mm:ss", //menerapkan bahwa pemilihan waktu || jam:menit:detik
             attr      : "value", //pemilihan berdasarkan attribute sebagai default
-            holiday   : [
-                ["01-16-2018", "Hari Raya Imlek"],
-                ["02-17-2018", "Hari Raya Nyepi"],
-                ["02-30-2018", "Paskah (Jum'at Agung)"],
-                ["03-14-2018", "Isra Mi'raj"],
-                ["04-10-2018", "Kenaikan Yesus"],
-                ["04-29-2018", "Hari Raya Waisak"],
-                ["05-11-2018_05-14-2018", "Cuti Bersama Lebaran"],
-                ["05-15-2018_05-16-2018", "Hari Raya Idul Fitri"],
-                ["05-18-2018_05-20-2018", "Cuti Bersama Lebaran"],
-                ["05-27-2018", "Hari Pencoblosan Pilkada Serentak"],
-                ["07-22-2018", "Idul Adha"],
-                ["08-11-2018", "Tahun Baru Islam"],
-                ["10-20-2018", "Maulid Nabi Muhammad SAW"],
-                ["11-24-2018", "Cuti Bersama Hari Raya Natal"],
+            holidays  : [
+                ["00-25-2020", "Hari Raya Imlek"],
+                ["02-22-2020", "Isra Mi'raj"],
+                ["02-25-2020", "Hari Raya Nyepi"],
+                ["03-10-2020", "Paskah (Jumat Agung)"],
+                ["04-01-2020", "Hari Buruh Nasional"],
+                ["04-07-2020", "Hari Raya Waisak"],
+                ["04-21-2020", "Kenaikan Yesus"],
+                ["04-22-2020", "Cuti Bersama Lebaran"],
+                ["04-24-2020_04-25-2020", "Hari Raya Idul Fitri"],
+                ["04-26-2020_04-27-2020", "Cuti Bersama Lebaran"],
+                ["06-31-2020", "Idul Adha"],
+                ["07-20-2020", "Tahun Baru Islam"],
+                ["09-29-2020", "Maulid Nabi Muhammad SAW"],
+                ["11-24-2020", "Cuti Bersama Hari Raya Natal"],
             ], //hari raya dimana mm-dd-yyyy
             permanentHolidays: [
                 ["00-01", "Tahun Baru"],
-                ["04-01", "Hari Buruh"],
+                ["06-01", "Hari Lahir Pancasila"],
                 ["07-17", "Hari Kemerdekaan Indonesia"],
                 ["05-01", "Hari Lahir Pancasila"],
                 ["11-25", "Hari Raya Natal"]
@@ -583,7 +583,7 @@
                     var select_day = body.find(HELPER.cls[15] + ".select"),
                         result_day = select_day.length !== 0 ? select_day : body.find(HELPER.cls[15] + '.today');
                         day = result_day.attr('data-day');
-                    console.log(typeof select_day);
+                        
                     if(typeElement === 'input' || typeElement === 'textarea')
                     {
                         elem.val(tanggal.setDatePicker(day)).trigger('change');
@@ -604,7 +604,6 @@
                 getValue      = "",
                 getDaysName   = (object.daysName && tanggal._validDaysNames(object.daysName)) ? object.daysName : DEFAULT.daysName,
                 formatDate    = (object.formatDate && tanggal._validFormatDate(object.formatDate)) ? object.formatDate : DEFAULT.formatDate,
-                getHoliday    = (object.holiday && tanggal._validHoliday(object.holiday)) ? object.holiday : DEFAULT.holiday,
                 getRangeYears = (object.rangeYears && tanggal._validRangeYears(object.rangeYears)) ? object.rangeYears : DEFAULT.rangeYears,
                 getMonthsName = (object.monthsName && tanggal._validMonthsNames(object.monthsName)) ? object.monthsName : DEFAULT.monthsName,
                 formatTime    = (object.formatTime && tanggal._validFormatTime(object.formatTime)) ? object.formatTime : DEFAULT.formatTime,
@@ -626,6 +625,13 @@
                     elemHeight: height,
                     elemWidth : width,
                 };
+
+            var getHoliday;
+            
+            if( object.holidays && tanggal._validHoliday(object.holidays) ) getHoliday = object.holidays;
+            else if( object.holiday && tanggal._validHoliday(object.holiday) ) getHoliday = object.holiday;
+            else getHoliday = DEFAULT.holidays;
+
             var nodeName = typeof base.context !== 'undefined' ? base.context.nodeName.toLowerCase() : base.get(0).nodeName.toLowerCase();
             if((object.attr || !object.attr) && (nodeName === 'textarea' || nodeName === 'input'))
             {
@@ -633,7 +639,16 @@
             }
             else
             {
-                getValue = (object.attr) ? base.attr(object.attr) : DEFAULT.attr;
+                if(object.attr)
+                {
+                    if(typeof base.attr(object.attr) === 'undefined') base.attr(object.attr, "");
+                    getValue = base.attr(object.attr);
+                }
+                else
+                {
+                    if(typeof base.attr(DEFAULT.attr) === 'undefined') base.attr(DEFAULT.attr, "");
+                    getValue = base.attr(DEFAULT.attr);
+                }
             }
             // apply value element
             /*
@@ -770,7 +785,7 @@
         this._indexYear     = null; // mendapatkan index hari dari split di dalam formatDate
     
         this.isNormalizeValue = false; // jika value ter-normalisasi (jika input kosong)
-        this.normalizeHoliday = null; // menormalkan data holiday jika dalam satu array memiliki beberapa hari ("06-15-2018_06-30-2018")
+        this.normalizeHoliday = null; // menormalkan data holiday jika dalam satu array memiliki beberapa hari ("06-15-2020_06-30-2020")
         this.isChangeHoliday  = false; // deteksi perubahan pada hari libur jika input element ter-klik
 
         this._pos           = null;
@@ -877,44 +892,57 @@
         //trim
         var val     = value.toString().replace(/^\s+|\s+$/gm, ''),
             valTime = val.split(" ");
-        // jika panjang input sama dengan 0 dan value tanggal tidak sesuai && formatDate yang di input tidak sesuai (bernilai false)
-        if (val.length === 0 && !this._validDate(val))
+        
+        if(this.isDate)
+        {
+            // jika panjang input sama dengan 0 dan value tanggal tidak sesuai && formatDate yang di input tidak sesuai (bernilai false)
+            if (val.length === 0 && !this._validDate(val))
+            { 
+                // mengurutkan value sesuai dengan formatDate
+                var today    = [ [this._indexDay, this._day], [this._indexMonth, this._month], [this._indexYear, this._year] ];
+                this.today = this._normalizeNullValue(today);
+                this.value = this.today;
+            }
+            else
+            { 
+                var splitMultiVal   = value.split(",");
+                // check apakah multi set date bernilau true
+                if(this.isMultiSetDate() && splitMultiVal.length > 1)
+                {
+                    for(var i = 0; i < splitMultiVal.length; i++)
+                    {
+                        this.multiDate.push(splitMultiVal[i]);
+                    }
+                }
+                else
+                {
+                    // apabila ada tanggal yang seperti 0000-00-00
+                    if(!this._validDate(val))
+                    {
+                        this.today = this._normalizeNullValue(today);
+                        this.value = this.today;
+                    }
+                    else
+                    {
+                        this.value = (valTime.length === 1) ? val : valTime[0];
+                        this.multiDate.push(this.value);
+                    }
+                }
+            }
+        }
+
+        if(!this.isDate && this.isTime)
         { 
             // mengurutkan value sesuai dengan formatDate
             var today    = [ [this._indexDay, this._day], [this._indexMonth, this._month], [this._indexYear, this._year] ];
             this.today = this._normalizeNullValue(today);
             this.value = this.today;
         }
-        else
-        { 
-            var splitMultiVal   = value.split(",");
-            // check apakah multi set date bernilau true
-            if(this.isMultiSetDate() && splitMultiVal.length > 1)
-            {
-                for(var i = 0; i < splitMultiVal.length; i++)
-                {
-                    this.multiDate.push(splitMultiVal[i]);
-                }
-            }
-            else
-            {
-                // apabila ada tanggal yang seperti 0000-00-00
-                if(!this._validDate(val))
-                {
-                    this.today = this._normalizeNullValue(today);
-                    this.value = this.today;
-                }
-                else
-                {
-                    this.value = (valTime.length === 1) ? val : valTime[0];
-                    this.multiDate.push(this.value);
-                }
-            }
-        }
+        
         // jika ada waktu
-        if(valTime.length === 2)
+        if(valTime.length === 2 || (valTime.length === 1 && !this.isDate && this.isTime) )
         {
-            var time         = valTime[1].split(":");   
+            var time         = !this.isDate && this.isTime ? valTime[0].split(":") : valTime[1].split(":");   
             // jam
             this.hour        = (typeof time[0] !== 'undefined' && time[0].length !== 0 ) ? time[0] : "00";
             // menit
@@ -1257,42 +1285,45 @@
     tgl.prototype._normalizeHoliday = function ()
     {
         var hol     = this.holiday,
+            s       = this._splitDefault,
             holiday = new Array();
             // jika element input ter-klik, otomatis holiday akan ter-set
             // dan untuk menghindari duplicate holiday, maka isCHangeHoliday bersifat false untuk mendeteksi perubahan terjadi ketika klik input element
-            if(!this.isChangeHoliday)
+        if(!this.isChangeHoliday)
+        {
+            for(var i = 0; i < hol.length; i++)
             {
-                for(var i = 0; i < hol.length; i++)
+                var _h = this.holiday[i],
+                    split = _h[0].split("_"); // mendapatkan tanggal
+                // jika ada hari libur yang lebih dari beberapa hari (misal selama 4 hari)
+                if(split.length > 1)
                 {
-                    var _h = this.holiday[i],
-                        split = _h[0].split("_"); // mendapatkan tanggal
-                    // jika ada hari libur yang lebih dari beberapa hari (misal selama 4 hari)
-                    if(split.length > 1)
+                    var start   = new Date(split[0]), // hasil split pertama
+                        end     = new Date(split[1]), // hasil split kedua
+                        loop    = new Date(start),
+                        no      = 0;
+                    while(loop < end)
                     {
-                        var start   = new Date(split[0]), // hasil split pertama
-                            end     = new Date(split[1]), // hasil split kedua
-                            loop    = new Date(start),
-                            no      = 0;
-                        while(loop < end)
-                        {
-                            var plus = 0,
-                                tgl  = "",
-                                s    = this._splitDefault;
-                            plus = (no === 0) ? 0 : 1;
-                            var newDate = loop.setDate(loop.getDate() + plus); // menambahkan 1 hari setiap while
-                            loop = new Date(newDate);
-                             
-                            tgl = loop.getMonth() + s + loop.getDate() + s + loop.getFullYear();
-                            holiday.push([tgl, _h[1]]);
-                            no++;
-                        }
-                    }
-                    else
-                    {
-                        holiday.push([_h[0], _h[1]]);
+                        var plus = 0,
+                            tgl  = "";
+                        plus = (no === 0) ? 0 : 1;
+                        var newDate = loop.setDate(loop.getDate() + plus); // menambahkan 1 hari setiap while
+                        loop = new Date(newDate);
+                            
+                        tgl = loop.getMonth() + s + loop.getDate() + s + loop.getFullYear();
+                        holiday.push([tgl, _h[1]]);
+                        no++;
                     }
                 }
+                else
+                {
+                    var _day    = _h[0].split(s),
+                        date    = parseInt(_day[0]) + s + parseInt(_day[1]) + s + _day[2];
+
+                    holiday.push([date, _h[1]]);
+                }
             }
+        }
         this.normalizeHoliday = holiday;
         return this.normalizeHoliday;
     }
@@ -1520,7 +1551,7 @@
                 {
                     // menormalkan value multiDate ke format mm-dd-yyyy
                     var multiDate_now = this._normalizeMultiDate(multiDate[arr]);
-                    if(multiDate_now === nowDate) { libur += " select"; console.log(multiDate_now); }
+                    if(multiDate_now === nowDate) { libur += " select"; }
                 }
             }
             else
@@ -1532,7 +1563,7 @@
             for(var h = 0; h < getHoliday.length; h++)
             {
                 var hol = getHoliday[h];
-                if(hol[0].indexOf(nowDate) !== -1) 
+                if(hol[0] === nowDate) 
                 {
                     libur   += " holiday";
                     title   = ' title="' + hol[1] + '"';
