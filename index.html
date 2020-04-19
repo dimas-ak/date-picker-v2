@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="Scripts/arjunane.min.css">
+    <link rel="stylesheet" href="Scripts/arjunane-date.min.css">
+    <title>Arjunane Date</title>
+</head>
+
+<body>
+
+    <div class="p-x">
+
+        <div class="col-mx center">
+            <h1>-=[ Arjunane-date.js v2 DEMO ]=-</h1>
+            <div class="col-mx">Dependency-free JavaScript library Date Picker v2</div>
+        </div>
+
+        <div class="col-mx">
+            <strong>Required:</strong>
+            <ul>
+                <li>jQuery.js</li>
+                <li>arjunane-date.js</li>
+                <li>arjunane-date.css</li>
+            </ul>
+        </div>
+
+        <div class="col-mx">
+            <strong>Tutorials</strong>
+            <ul>
+                <li>
+                    <a href="#init">Init</a>
+                </li>
+                <li>
+                    <a href="#objects">Objects</a>
+                    <ul>
+                        <li><a href="#formatdate">Format Date</a></li>
+                        <li><a href="#daysname">Days Name</a></li>
+                        <li><a href="#monthsname">Months Name</a></li>
+                        <li><a href="#rangeyears">Range Years</a></li>
+                        <li><a href="#showdate">Show Date</a></li>
+                        <li><a href="#formattime">Format Time</a></li>
+                        <li><a href="#minuteshours">Minutes & Hours</a></li>
+                        <li><a href="#holidays">Holidays</a></li>
+                        <li><a href="#permanentholidays">Permanent Holidays</a></li>
+                        <li><a href="#multiplesetdate">Multiple Date</a></li>
+                        <li><a href="#attr">Attribute</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-mx" id="init">
+            <h1>Init</h1>
+            <div class="col-mx bg-w2 p-x">
+                <pre>
+$(document).tanggal('.date', {
+    formatDate : "yyyy-mm-dd",
+    rangeYears : "1950"
+});</pre>
+
+                <div class="col-mx">
+                    <h3>Output:</h3>
+                    <div class="f-input">
+                        <span>Date</span>
+                        <input class="date" type="text" placeholder="Date ...">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-mx" id="objects">
+            <h1>Handlers</h1>
+            <div class="p-x">
+                <h3 id="formatdate">Format Date</h3>
+                <div class="col-mx">
+                    <span>type : <i>STRING</i></span>
+                </div>
+                <div class="col-mx p-x bg-w2">
+                    <pre>
+// <i><strong>Default</strong> : "mm-dd-yyyy"</i>
+// <i><strong>Another formatDate</strong> :</i>
+"mm-dd-yyyy", // bulan-hari-tahun
+"mm-yyyy-dd", // bulan-tahun-hari
+"dd-mm-yyyy", // hari-bulan-tahun
+"dd-yyyy-mm", // hari-tahun-bulan
+"yyyy-mm-dd", // tahun-bulan-hari
+"yyyy-dd-mm", // tahun-hari-bulan
+
+"mm.dd.yyyy", // bulan.hari.tahun
+"mm.yyyy.dd", // bulan.tahun.hari
+"dd.mm.yyyy", // hari.bulan.tahun
+"dd.yyyy.mm", // hari.tahun.bulan
+"yyyy.mm.dd", // tahun.bulan.hari
+"yyyy.dd.mm", // tahun.hari.bulan
+
+
+"mm/dd/yyyy", // bulan/hari/tahun
+"mm/yyyy/dd", // bulan/tahun/hari
+"dd/mm/yyyy", // hari/bulan/tahun
+"dd/yyyy/mm", // hari/tahun/bulan
+"yyyy/mm/dd", // tahun/bulan/hari
+"yyyy/dd/mm", // tahun/hari/bulan
+
+// <i><strong>Example</strong> :</i>
+formatDate : "yyyy-mm-dd"</pre>
+                </div>
+
+                <h3 id="daysname">Days Name</h3>
+                <div class="col-mx">
+                    <span>type : <i>ARRAY</i> => STRING, STRING</span>
+                </div>
+                <div class="col-mx p-x bg-w2">
+                    <pre>
+// <i><strong>Default</strong> :</i>
+daysName : 
+[
+    ["Minggu", "Min"], 
+    ['Senin', "Sen"], 
+    ["Selasa", "Sel"], 
+    ["Rabu", "Rab"], 
+    ["Kamis", "Kam"], 
+    ["Jumat", "Jum"], 
+    ["Sabtu", "Sab"]
+]</pre>
+                </div>
+
+                <h3 id="monthsname">Months Name</h3>
+                <div class="col-mx">
+                    <span>type : <i>ARRAY</i> => STRING</span>
+                </div>
+                <div class="col-mx p-x bg-w2">
+                    <pre>
+// <i><strong>Default</strong> :</i>
+monthsName: 
+[
+    "Januari", 
+    "Februari", 
+    "Maret", 
+    "April", 
+    "Mei", 
+    "Juni", 
+    "Juli", 
+    "Agustus", 
+    "September", 
+    "Oktober", 
+    "November", 
+    "Desember"
+]</pre>
+                </div>
+
+                <h3 id="monthsname">Range Years</h3>
+                <div class="col-mx">
+                    <span>type : <i>STRING</i></span>
+                </div>
+                <div class="col-mx p-x bg-w2">
+                    <pre>
+// <i><strong>Default</strong> : Last Year and Now</i>
+
+// <i>Particular Years and '<strong>:</strong>' for Separator</i>
+rangeYears : "1980:2005"
+
+// <i>OR choose your last year</i>
+rangeYears :"1980" // <i>It mean that 1980 until Now</i></pre>
+                </div>
+
+                <h3 id="showdate">Show Date</h3>
+                <div class="col-mx">
+                    <span>type : <i>ARRAY</i> => <i>BOOLEAN, BOOLEAN</i></span>
+                </div>
+                <div class="col-mx p-x bg-w2">
+                    <pre>
+// <i><strong>Default</strong> : [ true, false ]</i>
+// <i>First Boolean : Date Picker</i>
+// <i>Second Boolean : Time Chooser</i>
+
+showDate : 
+[
+    true, // <i>=> Set it to <strong>false</strong> if you don't want to see the Date</i>
+    true // <i>=> Set it to <strong>true</strong> if you want to see the Time</i>
+]
+
+// <i><strong>Example : </strong> if you want to show the Time Chooser only, then</i>
+showDate :
+[
+    false,
+    true
+]</pre>
+
+<div class="col-mx">
+    <h3>Output:</h3>
+        <pre>
+showDate : 
+[ 
+    false,
+    true
+]
+        </pre>
+                        <div class="f-input">
+                            <span>Date</span>
+                            <input class="-showDate" type="text" placeholder="Date ...">
+                        </div>
+                    </div>
+                </div>
+
+                <h3 id="formattime">Format Time</h3>
+                <div class="col-mx">
+                    <span>type : <i>STRING</i></span>
+                </div>
+                <div class="col-mx p-x bg-w2">
+                    <pre>
+// <i><strong>Default</strong> : "hh:mm:ss"</i>
+// <i><strong>Another Format Time</strong> :</i>
+"hh:mm:ss:ms",
+"hh:mm:ss",
+"hh:mm",
+"hh"
+
+// <i><strong>Example</strong> :</i>
+formatTime : "hh:mm"</pre>
+                    <div class="col-mx">
+                        <h3>Output:</h3>
+                        <div class="f-input">
+                            <span>Date</span>
+                            <input class="-date" type="text" placeholder="Date ...">
+                        </div>
+                    </div>
+                </div>
+
+                <h3 id="minuteshours">Minutes & Hours</h3>
+                <div class="col-mx">
+                    <span>type : <i>STRING</i> OR <i>ARRAY => INT</i></span>
+                </div>
+                <div class="col-mx p-x bg-w2">
+                    <pre>
+// <i><strong>Default</strong> hours    : "0-24"</i> <= It mean 0-23
+// <i><strong>Default</strong> minutes  : "0-60"</i> <= It mean 0-59
+
+//<i>Let's say, you want to set certain <strong>minutes</strong> OR <strong>hours</strong></i>
+
+minutes    : [0, 15, 30, 45, 60],
+hours      : [8, 9, 10, 11, 12]
+<i>
+/*
+<strong>NOTE</strong>
+<u>MAX of Hours is 23</u>
+<u>MAX of Minutes is 59</u>
+*/
+</i></pre>
+                </div>
+
+                <h3 id="holidays">Holidays</h3>
+                <div class="col-mx">
+                    <span>type : <i>ARRAY => STRING, STRING</i></span>
+                </div>
+                <div class="col-mx p-x bg-w2">
+                    <pre>
+// <i>I'll update it for every year</i>
+// <i>["month-day-year", "the name of your holiday"]</i>
+// <i><strong>Default</strong> holidays :</i>
+["00-25-2020", "Hari Raya Imlek"],
+["02-22-2020", "Isra Mi'raj"],
+["02-25-2020", "Hari Raya Nyepi"],
+["03-10-2020", "Paskah (Jumat Agung)"],
+["04-01-2020", "Hari Buruh Nasional"],
+["04-07-2020", "Hari Raya Waisak"],
+["04-21-2020", "Kenaikan Yesus"],
+["04-22-2020", "Cuti Bersama Lebaran"],
+["04-24-2020_04-25-2020", "Hari Raya Idul Fitri"],
+["04-26-2020_04-27-2020", "Cuti Bersama Lebaran"],
+["06-31-2020", "Idul Adha"],
+["07-20-2020", "Tahun Baru Islam"],
+["09-29-2020", "Maulid Nabi Muhammad SAW"],
+["11-24-2020", "Cuti Bersama Hari Raya Natal"],
+
+// <i><strong>NOTE</strong>: First value of month is zero ("00" OR January) until 11 (December)</i>
+
+/*
+    <i>Let's say, you want to put some holidays in sequence</i>
+    <i><strong>Separator: </strong>"_" OR underline</i>
+    ["month-day-year_month-day-year", "the name of your holidays"]
+*/
+
+// <i><strong>Example</strong></i>
+holidays :
+[
+    ["01-15-2020_01-20-2020", "My Holidays"] // <i>It mean that date from 15 - 20 February 2020</i>
+]
+
+// <i>Set to <strong>FALSE</strong> if you don't want to show the Holidays</i>
+holidays : false</pre>
+                </div>
+
+                <h3 id="permanentholidays">Permanent Holidays</h3>
+                <div class="col-mx">
+                    <span>type : <i>ARRAY => STRING, STRING</i></span>
+                </div>
+                <div class="col-mx p-x bg-w2">
+                    <pre>
+// <i>["month-day", "the name of your holiday"]</i>
+// <i><strong>Default</strong> permanentHolidays :</i>
+["00-01", "Tahun Baru"],
+["06-01", "Hari Lahir Pancasila"],
+["07-17", "Hari Kemerdekaan Indonesia"],
+["05-01", "Hari Lahir Pancasila"],
+["11-25", "Hari Raya Natal"]
+
+// <i><strong>NOTE</strong>: First value of month is zero ("00" OR January) until 11 (December)</i>
+
+// <i>Set to <strong>FALSE</strong> if you don't want to show the Permanent Holidays</i>
+permanentHolidays : false</pre>
+                </div>
+
+                <h3 id="multiplesetdate">Multiple Date</h3>
+                <div class="col-mx">
+                    <span>type : <i>BOOLEAN/i></span>
+                </div>
+                <div class="col-mx p-x bg-w2">
+                    <pre>
+// <i><strong>Default </strong> multiSetDate : false</i>
+// <i><strong>Default</strong> Separator is , OR comma</i>
+
+// <i>Set it to <strong>true</strong> and press <strong>CTRL + Click</strong></i>
+// <i><strong>Output</strong> :</i>
+<div class="f-input"><span>Multi Set Date</span><input type="text" class="multi" placeholder="Date ...">
+</div></pre>
+                </div>
+
+                
+                <h3 id="attr">Attribute</h3>
+                <div class="col-mx">
+                    <span>type : <i>STRING/i></span>
+                </div>
+                <div class="col-mx p-x bg-w2">
+                    <pre>
+// <i><strong>Default attr</strong> : "value"</i>
+// <i>Let's say, you want to put the DatePicker in <strong>DIV</strong>, then</i>
+
+// <i><strong>Example</strong> :</i>
+// <i>attr : "value"</i>
+<h3>Output: </h3><div id="date-picker" contenteditable="" class="p-x" value="">Click Me</div></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Scripts/jquery.js" type="text/javascript"></script>
+    <script src="Scripts/arjunane-date.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).tanggal('.date', {
+            formatDate: "yyyy-mm-dd",
+            rangeYears: "1950",
+            showDate: [true, false],
+            multiSetDate : false
+        });
+        $(document).tanggal('.-showDate', {
+            formatDate: "yyyy-mm-dd",
+            rangeYears: "1950",
+            showDate: [false, true],
+            multiSetDate : false
+        });
+        $(document).tanggal('.-date', {
+            formatDate: "yyyy-mm-dd",
+            rangeYears: "2010",
+            showDate: [true, true],
+            formatTime: "hh:mm",
+            multiSetDate : false
+        });
+        $(document).tanggal('#date-picker', {
+            formatDate: "yyyy-mm-dd",
+            rangeYears: "1950",
+            showDate: [true, false],
+            multiSetDate : false
+        });
+        $(document).tanggal('.multi', {
+            formatDate: "yyyy-mm-dd",
+            rangeYears: "1950",
+            showDate: [true, false],
+            multiSetDate : true
+        });
+    </script>
+
+</body>
+
+</html>
