@@ -620,7 +620,7 @@
                     left      : offset.left, // posisi kiri element selected
                     height    : 400,  // tinggi element selected
                     width     : 350,   // panjang element selected
-                    pageX     : window.pageXOffset,  // tinggi window
+                    pageX     : window.innerWidth,  // panjang window
                     pageY     : window.pageYOffset, // 
                     elemHeight: height,
                     elemWidth : width,
