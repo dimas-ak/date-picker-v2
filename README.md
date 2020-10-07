@@ -2,6 +2,6 @@
 
 Require : **jQuery**
 
-Click [here](https://dimas-ak.github.io/documentation/date-picker-v2/) to find the documentation
+Click [here](https://dimas-ak.web.app/documentation/date-picker-v2/) to find the documentation
 
-Find [more](https://dimas-ak.github.io)
+Find [more](https://dimas-ak.web.app)
